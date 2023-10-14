@@ -1,16 +1,16 @@
 network:
   -
-    username: "15676039902"
+    username: "123456789"
     password: "123456"
     wifi_name: "123456"
   -
-    username: "15676036286"
+    username: "987654321"
     password: "123456"
     wifi_name: "只等妹妹"
 
 mail:
   is_open: true
-  sender_qq: "2324899362"
+  sender_qq: "xxxxxxxx"
   receiver_qq:
-    - "2223522114"
-  sender_code: "dzxrccfdfeghebai"
+    - "xxxxxxxx"
+  sender_code: "xxxxxxxx"
