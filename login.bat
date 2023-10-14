@@ -1,6 +1,6 @@
 @echo off
 D:
 cd D:\projects\CampusNetworkLogin
-python login.py
+python main.py
 pause
 exit
