@@ -1,0 +1,20 @@
+[
+    {
+        "username": "15676039902",
+        "password": "123456",
+        "route_info": {
+            "route_username": "",
+            "route_password": "qaz11234"
+        },
+        "wifi_name": "123456"
+    },
+    {
+        "username": "15676036286",
+        "password": "123456",
+        "route_info": {
+            "route_username": "admin",
+            "route_password": "admin"
+        },
+        "wifi_name": "只等妹妹"
+    }
+]
