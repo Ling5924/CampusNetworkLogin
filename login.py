@@ -205,9 +205,9 @@ def main():
         username = user[0]
         password = user[1]
         login_network(log_path, username, password)
-    sender_qq = '2324899362@qq.com'  # 发件人邮箱
-    sender_code = 'dzxrccfdfeghebai'  # 发件人授权码
-    receiver_qq = ['2223522114@qq.com']  # 收件人邮箱
+    sender_qq = 'xxxxxx@qq.com'  # 发件人邮箱
+    sender_code = 'xxxxxx'  # 发件人授权码
+    receiver_qq = ['xxxxx@qq.com']  # 收件人邮箱
     mail(log_path, sender_qq, receiver_qq, sender_code)
 
 
