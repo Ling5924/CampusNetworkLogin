@@ -74,6 +74,7 @@ def get_verifycode(log_path, cookie):
             return None
 
 
+# 把登录生成后的参数保存到cache文件中
 def write_cache(log_path, cache_path, response, cookie):
     try:
         logout_params = response.split('gurl')[1].split('?')[1].split('"')[0]
@@ -89,6 +90,12 @@ def write_cache(log_path, cache_path, response, cookie):
     outputlog(log_path, f'new_cookie: {cookie}')
     outputlog(log_path, f'new_params: {logout_params}')
     outputlog(log_path, '正在写入缓存')
+    cache_name = cache_path.split('\\')[-1]
+    cache_files = cache_path.replace(rf"\{cache_name}", '')
+    if os.path.exists(cache_files):
+        pass
+    else:
+        os.mkdir(cache_files)
     with open(cache_path, 'w') as file:
         json.dump(data, file, indent=4)
     return logout_params
@@ -96,9 +103,8 @@ def write_cache(log_path, cache_path, response, cookie):
 
 # 读取config.yaml的配置信息
 def load_yaml(file_path):
-    with open('config.yaml', 'r', encoding='utf-8') as config_file:
+    with open(file_path, 'r', encoding='utf-8') as config_file:
         config = yaml.load(config_file, Loader=yaml.FullLoader)
-
     # 访问配置信息
     network_config = config['network']
     mail_config = config['mail']

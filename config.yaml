@@ -1,16 +1,19 @@
+# 可以实现多个账号登录
 network:
   -
-    username: "15676039902"
-    password: "123456"
-    wifi_name: "123456"
+    username: "15676039902" # 联通手机号
+    password: "123456" # 密码，初始密码一般为123456
+    wifi_name: "123456" # 需登录的网络的WIFI名，需与联通手机号所在网络对应
   -
     username: "15676036286"
     password: "123456"
     wifi_name: "只等妹妹"
 
+# 使用邮箱功能需到发送方的qq邮箱开启SMTP服务并获取授权码
+# 通过邮箱发送日志
 mail:
-  is_open: true
-  sender_qq: "2324899362"
-  receiver_qq:
-    - "2223522114"
-  sender_code: "dzxrccfdfeghebai"
+  is_open: false # true：开启发送邮箱的功能  false：关闭发送邮箱的功能
+  sender_qq: "2324899362@qq.com" # 发送方的qq邮箱
+  receiver_qq: # 接受方的qq邮箱，可以为多个邮箱
+    - "2223522114@qq.com"
+  sender_code: "oyqpbxmeohjpeace" # 发送方的授权码

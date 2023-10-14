@@ -53,7 +53,6 @@ def main():
         else:
             outputlog(log_path, f'用户{username}_cache文件未找到，无法进行登出')
         cookie = get_cookie()
-        print(username, password, cookie)
         response = login(log_path, username, password, cookie)
         if response:
             outputlog(log_path, f'用户{username}登录成功')

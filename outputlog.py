@@ -1,10 +1,18 @@
 import inspect
+import os
 import platform
 import re
 from datetime import datetime
 
 
+# 生成日志
 def outputlog(log_path, text, level="info"):
+    log_name = log_path.split('\\')[-1]
+    log_files = log_path.replace(rf"\{log_name}", '')
+    if os.path.exists(log_files):
+        pass
+    else:
+        os.mkdir(log_files)
     save_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
     with open(log_path, "a", encoding="utf8") as f:
         if platform.system().lower() == 'windows':

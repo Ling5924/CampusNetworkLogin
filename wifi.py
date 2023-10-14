@@ -51,6 +51,3 @@ def restart_wifi():
                           shell=True)
     start_result = p1.stdout.read().decode('gb2312', errors='ignore').strip()
     return stop_result, start_result
-
-
-
