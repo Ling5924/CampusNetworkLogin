@@ -204,9 +204,9 @@ def main():
                 outputlog(log_path, f'用户{username}_cache文件写入失败')
         else:
             outputlog(log_path, f'用户{username}登录失败')
-    sender_qq = '2324899362@qq.com'  # 发件人邮箱
-    receiver_qq = ['2223522114@qq.com']  # 收件人邮箱
-    sender_code = 'dzxrccfdfeghebai'  # 发件人授权码
+    sender_qq = 'xxxxx@qq.com'  # 发件人邮箱
+    receiver_qq = ['xxxxx@qq.com']  # 收件人邮箱
+    sender_code = 'xxxxxx'  # 发件人授权码
     mail(log_path, sender_qq, receiver_qq, sender_code)
 
 
