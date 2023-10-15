@@ -1,0 +1,4 @@
+ddddocr
+requests
+yaml
+Pillow==9.5.0
