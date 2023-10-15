@@ -1,4 +1,4 @@
-![cover](https://yupao.site/wp-content/uploads/2023/10/index.png)
+![cover](https://yupao.site/wp-content/uploads/2023/10/index-e1697386686847.png)
 
 ------------------------------------
 <p align="center">
