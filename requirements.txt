@@ -1,4 +1,4 @@
 ddddocr
 requests
-yaml
+PyYAML
 Pillow==9.5.0
