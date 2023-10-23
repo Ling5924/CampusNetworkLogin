@@ -3,10 +3,12 @@ network:
   -
     username: "xxxxxxxxxxx" # 联通手机号
     password: "xxxxxxxxxxx" # 密码，初始密码一般为123456
+    wifi_is_open: true # 当前网络状态 WIFI: true  宽带: false
     wifi_name: "xxxxxxxxxxx" # 需登录的网络的WIFI名，需与联通手机号所在网络对应
   -
     username: "xxxxxxxxxxx"
     password: "xxxxxxxxxxx"
+    wifi_is_open: true
     wifi_name: "xxxxxxxxxxx"
 
 # 使用邮箱功能需到发送方的qq邮箱开启SMTP服务并获取授权码
