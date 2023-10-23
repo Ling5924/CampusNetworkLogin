@@ -1,30 +1,37 @@
 import time
 import requests
+
+from common import current_network_status
 from outputlog import outputlog
 
 
-# 登出
+# 登出 0 成功 1 网络未连接 2 失败
 def logout(log_path, cookie, params):
     url = f'http://221.7.244.134:8080/logout.do?{params}'
-    res = requests.get(url, cookies=cookie)
+    current_network = True
+    for _ in range(3):
+        current_network = current_network_status(log_path)
+        if current_network:
+            break
+    if current_network:
+        res = requests.get(url, cookies=cookie)
+    else:
+        return 1
     if res.status_code == 200:
         if 'SUCCESS' in res.text:
-            try:
-                res_ping = requests.get('https://www.baidu.com', timeout=3)
-            except Exception as e:
-                outputlog(log_path, e)
-                outputlog(log_path, '访问百度失败，账号已退出')
-                return True
-            if res_ping.status_code == 200:
+            network_status = current_network_status(log_path)
+            if network_status:
                 outputlog(log_path, '参数错误，账号并未完全退出')
                 outputlog(log_path, '请把对应的cache文件删除后重新登录')
-                return False
+                return 2
+            else:
+                outputlog(log_path, '账号成功登出')
             time.sleep(3)
-            return True
+            return 0
         else:
             outputlog(log_path, '未知错误')
             outputlog(log_path, res.text)
-            return False
+            return 2
     else:
         outputlog(log_path, f'logout请求失败,status_code = {res.status_code}')
-        return False
+        return 2
