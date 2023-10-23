@@ -18,21 +18,23 @@ def main():
     try:
         for user in user_info:
             outputlog(log_path, f'--------------------------------------')
-            current_wifi = get_current_wifi()
-            outputlog(log_path, f'当前WIFI为: {current_wifi}')
-            wifi_name = user['wifi_name']
-            if current_wifi == wifi_name:
-                outputlog(log_path, '当前WIFI为目标WIFI,不需要进行切换')
-            else:
-                outputlog(log_path, '当前WIFI不是目标WIFI,正在进行切换')
-                result, stop_result, start_result = switch_wifi(wifi_name)
-                outputlog(log_path, stop_result)
-                outputlog(log_path, start_result)
-                if '已成功完成连接请求。' in result:
-                    outputlog(log_path, f"{wifi_name}{result}")
+            wifi_is_open = user['wifi_is_open']
+            if wifi_is_open:
+                current_wifi = get_current_wifi()
+                outputlog(log_path, f'当前WIFI为: {current_wifi}')
+                wifi_name = user['wifi_name']
+                if current_wifi == wifi_name:
+                    outputlog(log_path, '当前WIFI为目标WIFI,不需要进行切换')
                 else:
-                    outputlog(log_path, f'连接失败，{result}')
-                    continue
+                    outputlog(log_path, '当前WIFI不是目标WIFI,正在进行切换')
+                    result, stop_result, start_result = switch_wifi(wifi_name)
+                    outputlog(log_path, stop_result)
+                    outputlog(log_path, start_result)
+                    if '已成功完成连接请求。' in result:
+                        outputlog(log_path, f"{wifi_name}{result}")
+                    else:
+                        outputlog(log_path, f'连接失败，{result}')
+                        continue
             username = user['username']
             password = user['password']
             cache_path = os.path.join(os.getcwd(), rf"cache\{username}_cache.json")
