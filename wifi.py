@@ -50,4 +50,5 @@ def restart_wifi():
                           stderr=subprocess.PIPE,
                           shell=True)
     start_result = p1.stdout.read().decode('gb2312', errors='ignore').strip()
+    time.sleep(3)
     return stop_result, start_result

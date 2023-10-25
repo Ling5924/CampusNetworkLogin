@@ -114,11 +114,14 @@ def load_yaml(file_path):
 # 判断当前网络状态  False: 未连接  True: 正常
 def current_network_status(log_path):
     try:
-        res_ping = requests.get('https://www.baidu.com', timeout=3)
+        res_ping = requests.get('https://www.baidu.com')
     except Exception as e:
         outputlog(log_path, e)
         outputlog(log_path, '访问百度失败，当前网络未连接')
         return False
-    if res_ping.status_code == 200:
+    if res_ping.status_code == 200 and '百度一下，你就知道' in res_ping.content.decode():
         outputlog(log_path, '访问百度成功，当前网络正常')
         return True
+    else:
+        outputlog(log_path, '访问百度失败，当前网络未连接')
+        return False

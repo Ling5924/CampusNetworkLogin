@@ -9,16 +9,19 @@ from outputlog import outputlog
 def logout(log_path, cookie, params):
     url = f'http://221.7.244.134:8080/logout.do?{params}'
     current_network = True
+    outputlog(log_path, '登出前网络测试')
     for _ in range(3):
         current_network = current_network_status(log_path)
         if current_network:
             break
+        time.sleep(3)
     if current_network:
         res = requests.get(url, cookies=cookie)
     else:
         return 1
     if res.status_code == 200:
         if 'SUCCESS' in res.text:
+            outputlog(log_path, '登出后网络测试')
             network_status = current_network_status(log_path)
             if network_status:
                 outputlog(log_path, '参数错误，账号并未完全退出')
