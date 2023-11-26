@@ -10,11 +10,15 @@ from wifi import get_current_wifi, switch_wifi
 
 
 def main():
+    result_list = []
     dt = datetime.now()
     dt = dt.strftime("%Y%m%d%H%M%S")
     log_path = os.path.join(os.getcwd(), rf"logs\{dt}_log.txt")
     config_path = os.path.join(os.getcwd(), rf"config.yaml")
     user_info, mail_info = load_yaml(config_path)
+    count = 0
+    for user in user_info:
+        result_list.append({user['wifi_name']: False})
     try:
         for user in user_info:
             outputlog(log_path, f'--------------------------------------')
@@ -61,6 +65,8 @@ def main():
             response = login(log_path, username, password, cookie)
             if response:
                 outputlog(log_path, f'用户{username}登录成功')
+                result_list[count][user['wifi_name']] = True
+                count += 1
                 write_result = write_cache(log_path, cache_path, response, cookie)
                 if write_result:
                     outputlog(log_path, f'用户{username}_cache文件写入成功')
@@ -75,7 +81,7 @@ def main():
             sender_qq = mail_info["sender_qq"]  # 发件人邮箱
             receiver_qq = mail_info["receiver_qq"]  # 收件人邮箱
             sender_code = mail_info["sender_code"]  # 发件人授权码
-            mail(log_path, sender_qq, receiver_qq, sender_code)
+            mail(log_path, result_list, sender_qq, receiver_qq, sender_code)
 
 
 main()

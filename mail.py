@@ -6,10 +6,17 @@ from email.mime.text import MIMEText
 from outputlog import outputlog
 
 
-def mail(log_path, sender_qq, receiver_qq, sender_code):
+def mail(log_path, result_list, sender_qq, receiver_qq, sender_code):
     host_server = 'smtp.qq.com'  # qq邮箱smtp服务器
-    m_date = datetime.now().date()
-    mail_title = f'{m_date}的日志'  # 邮件标题n
+    #  m_date = datetime.now().date()
+    mail_title = ''
+    for x in result_list:
+        if bool(x.values()):
+            y = "成功"
+        else:
+            y = "失败"
+        mail_title += f"{list(x.keys())[0]}: {y} "  # 邮件标题n
+    #  mail_title = f'{m_date}的日志'
     with open(log_path, 'r', encoding='utf-8') as f:
         content = f.read()
     # 邮件正文内容
