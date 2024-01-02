@@ -25,7 +25,11 @@ def logout(log_path, cookie, params):
             network_status = current_network_status(log_path)
             if network_status:
                 outputlog(log_path, '参数错误，账号并未完全退出')
-                outputlog(log_path, '请把对应的cache文件删除后重新登录')
+                outputlog(log_path, '脚本已被打断，请勿进行人为登录')
+                outputlog(log_path, '以下是重新启动脚本的方法：')
+                outputlog(log_path, '1.尝试到路由器后台重置网络达到退出账号的目的，等待登录界面自动弹出，再次运行该脚本')
+                outputlog(log_path, '2.等待系统自动退出账号，登录界面自动弹出，再次运行该脚本')
+                outputlog(log_path, '注：人为进行登录会打断脚本的连续运行')
                 return 2
             else:
                 outputlog(log_path, '账号成功登出')

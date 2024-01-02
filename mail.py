@@ -11,7 +11,7 @@ def mail(log_path, result_list, sender_qq, receiver_qq, sender_code):
     #  m_date = datetime.now().date()
     mail_title = ''
     for x in result_list:
-        if bool(x.values()):
+        if list(x.values())[0]:
             y = "成功"
         else:
             y = "失败"
@@ -43,10 +43,9 @@ def mail(log_path, result_list, sender_qq, receiver_qq, sender_code):
         # smtp.set_debuglevel(1)  # 0是关闭，1是开启debug
         smtp.ehlo(host_server)  # 跟服务器打招呼，告诉它我们准备连接，最好加上这行代码
         smtp.login(sender_qq, sender_code)
-        smtp.sendmail(sender_qq, receiver_qq, msg.as_string())
-
-        smtp.quit()
         outputlog(log_path, "邮件发送成功")
+        smtp.sendmail(sender_qq, receiver_qq, msg.as_string())
+        smtp.quit()
     except smtplib.SMTPException as e:
         outputlog(log_path, "无法发送邮件")
         outputlog(log_path, e)

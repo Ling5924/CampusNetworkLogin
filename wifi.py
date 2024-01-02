@@ -1,6 +1,8 @@
 import subprocess
 import time
 
+from outputlog import outputlog
+
 
 # 获取当前WIFI名称
 def get_current_wifi():
@@ -19,18 +21,32 @@ def get_current_wifi():
 
 
 # 切换指定WIFI
-def switch_wifi(wifi_name):
-    stop_result, start_result = restart_wifi()
-    time.sleep(3)
-    connect_cmd = f'netsh wlan connect name="{wifi_name}"'
-    p = subprocess.Popen(connect_cmd,
-                         stdin=subprocess.PIPE,
-                         stdout=subprocess.PIPE,
-                         stderr=subprocess.PIPE,
-                         shell=True)
-    result = p.stdout.read().decode('gb2312', errors='ignore').strip()
-    time.sleep(3)
-    return result, stop_result, start_result
+def switch_wifi(log_path, wifi_name):
+    connects = 0
+    while True:
+        stop_result, start_result = restart_wifi()
+        time.sleep(3)
+        connect_cmd = f'netsh wlan connect name="{wifi_name}"'
+        p = subprocess.Popen(connect_cmd,
+                             stdin=subprocess.PIPE,
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.PIPE,
+                             shell=True)
+        result = p.stdout.read().decode('gb2312', errors='ignore').strip()
+        time.sleep(3)
+        outputlog(log_path, stop_result)
+        outputlog(log_path, start_result)
+        if '已成功完成连接请求。' in result:
+            outputlog(log_path, f"{wifi_name}{result}")
+            return True
+        elif connects > 20:
+            outputlog(log_path, f'{wifi_name}无法进行连接')
+            return False
+        else:
+            connects += 1
+            outputlog(log_path, f'连接失败，{result}')
+            outputlog(log_path, f'正在进行第{connects}次重新连接')
+            time.sleep(5)
 
 
 # 重置WIFI服务
