@@ -3,7 +3,7 @@
 <p align="center">
   <h2 align="center">桂林理工大学南宁分校校园网自动登录</h2>
 </p>
-
+<br>
 ![cover](https://github.com/Ling5924/Images/blob/master/CNL/campus.png)
 
 ***
