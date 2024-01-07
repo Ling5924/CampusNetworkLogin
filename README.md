@@ -1,13 +1,10 @@
-![cover](https://github.com/Ling5924/Images/blob/master/CNL/campus.png)
 
 ------------------------------------
 <p align="center">
-  <h2 align="center">CampusNetworkLogin</h2>
-  <p align="center">
-    联通校园网自动登录
-    <br/>
-  </p>
+  <h2 align="center">桂林理工大学南宁分校校园网自动登录</h2>
 </p>
+
+![cover](https://github.com/Ling5924/Images/blob/master/CNL/campus.png)
 
 ***
 **⚡ 支持**   
