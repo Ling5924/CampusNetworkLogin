@@ -74,7 +74,14 @@ def main():
     except Exception as e:
         outputlog(log_path, e)
     finally:
-        if mail_info["is_open"]:
+        send_state = False
+        for result in result_list:
+            if list(result.values())[0]:
+                outputlog(log_path, f"{list(result.keys())[0]}: 成功 ")
+            else:
+                outputlog(log_path, f"{list(result.keys())[0]}: 失败 ")
+                send_state = True
+        if mail_info["is_open"] and send_state:
             outputlog(log_path, f'邮件发出前网络测试')
             sender_network = current_network_status(log_path)
             sender_wifi = get_current_wifi()
