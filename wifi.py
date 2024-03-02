@@ -39,7 +39,7 @@ def switch_wifi(log_path, wifi_name):
         if '已成功完成连接请求。' in result:
             outputlog(log_path, f"{wifi_name}{result}")
             return True
-        elif connects > 20:
+        elif connects > 3:
             outputlog(log_path, f'{wifi_name}无法进行连接')
             return False
         else:

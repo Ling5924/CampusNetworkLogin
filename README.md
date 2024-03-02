@@ -15,15 +15,23 @@
 
 
 ## 🔧 教程
-* 需下载python3.11解释器，python3.12该项目不兼容
+* 需下载python3.11及以下的解释器，python3.12该项目不兼容
 * 第一次运行请在主目录执行```pip install -r requirements.txt```命令安装对应的依赖
 * 修改config.yaml配置文件
-* 第一次运行请将当前网络的账号退出，否则会导致登录失败，到当前网络路由器后台重置网络后即可将账号退出，当电脑自动弹出联通登录页面即说明账号退出成功，此时就可以运行main.py文件进行第一次登录，第一次登录成功后就不需要通路由器后台进行账号退出
 * 当程序可以正常登录和退出后，即可通过login.bat脚本文件在电脑上设置定时任务来实现每天登录网络
 ### 注：当需要登录多账号的情况下需要以管理员权限运行，否则会出现WIFI切换失败导致登录失败的问题出现
 
 
 欢迎提出新的点子、 Pull Request。  
+
+## 🔧 Windows计划任务教程
+![cover](https://github.com/Ling5924/Images/blob/master/CNL/1.png)
+![cover](https://github.com/Ling5924/Images/blob/master/CNL/2.png)
+![cover](https://github.com/Ling5924/Images/blob/master/CNL/3.png)
+![cover](https://github.com/Ling5924/Images/blob/master/CNL/4.png)
+![cover](https://github.com/Ling5924/Images/blob/master/CNL/5.png)
+![cover](https://github.com/Ling5924/Images/blob/master/CNL/6.png)
+![cover](https://github.com/Ling5924/Images/blob/master/CNL/7.png)
 
 
 ## 💪 支持我们

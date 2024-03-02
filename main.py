@@ -1,8 +1,7 @@
-import json
 import os
 import time
 from datetime import datetime
-from common import write_cache, load_yaml, current_network_status
+from common import load_yaml, current_network_status
 from login import login
 from logout import logout
 from mail import mail
@@ -36,41 +35,32 @@ def main():
                     connect_state = switch_wifi(log_path, wifi_name)
             username = user['username']
             password = user['password']
-            cache_path = os.path.join(os.getcwd(), rf"cache\{username}_cache.json")
             if connect_state:
-                if os.path.exists(cache_path):
-                    with open(cache_path, 'r') as file:
-                        data = json.load(file)
-                    cookie = data.get("cookie")
-                    params = data.get("logout_params")
-                    if cookie and params:
-                        logout_result = logout(log_path, cookie, params)
-                    else:
-                        outputlog(log_path, f'用户{username}_cache文件不完整，无法进行登出')
-                        continue
-                    if logout_result == 0:
+                current_network = True
+                outputlog(log_path, '登出前网络测试')
+                for _ in range(3):
+                    current_network = current_network_status(log_path)
+                    if current_network:
+                        break
+                    time.sleep(3)
+                if current_network:
+                    logout_result = logout(log_path, username)
+                    if logout_result:
                         outputlog(log_path, f'用户{username}退出成功')
-                    elif logout_result == 1:
-                        outputlog(log_path, f'用户{username}当前为网络未连接状态')
-                    elif logout_result == 2:
+                    else:
                         outputlog(log_path, f'用户{username}退出失败')
                         continue
                 else:
-                    outputlog(log_path, f'用户{username}_cache文件未找到，无法进行登出')
+                    outputlog(log_path, f'用户{username}当前为网络未连接状态')
                 response, cookie = login(log_path, username, password)
                 if response:
                     outputlog(log_path, f'用户{username}登录成功')
                     result_list[count][user['wifi_name']] = True
                     count += 1
-                    write_result = write_cache(log_path, cache_path, response, cookie)
-                    if write_result:
-                        outputlog(log_path, f'用户{username}_cache文件写入成功')
-                    else:
-                        outputlog(log_path, f'用户{username}_cache文件写入失败')
                 else:
                     outputlog(log_path, f'用户{username}登录失败')
             else:
-                outputlog(log_path, f'用户{username}登录失败')
+                outputlog(log_path, f'用户{username}切换WIFI失败')
     except Exception as e:
         outputlog(log_path, e)
     finally:
