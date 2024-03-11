@@ -16,11 +16,10 @@ def main():
     log_path = os.path.join(os.getcwd(), rf"logs\{dt}_log.txt")
     config_path = os.path.join(os.getcwd(), rf"config.yaml")
     user_info, mail_info = load_yaml(config_path)
-    count = 0
     for user in user_info:
         result_list.append({user['wifi_name']: False})
     try:
-        for user in user_info:
+        for count, user in enumerate(user_info):
             connect_state = True
             outputlog(log_path, f'--------------------------------------')
             wifi_is_open = user['wifi_is_open']
@@ -36,13 +35,7 @@ def main():
             username = user['username']
             password = user['password']
             if connect_state:
-                current_network = True
-                outputlog(log_path, '登出前网络测试')
-                for _ in range(3):
-                    current_network = current_network_status(log_path)
-                    if current_network:
-                        break
-                    time.sleep(3)
+                current_network = current_network_status(log_path)
                 if current_network:
                     logout_result = logout(log_path, username)
                     if logout_result:
@@ -56,7 +49,6 @@ def main():
                 if response:
                     outputlog(log_path, f'用户{username}登录成功')
                     result_list[count][user['wifi_name']] = True
-                    count += 1
                 else:
                     outputlog(log_path, f'用户{username}登录失败')
             else:
