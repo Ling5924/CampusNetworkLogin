@@ -36,7 +36,9 @@ def switch_wifi(log_path, wifi_name):
         time.sleep(3)
         outputlog(log_path, stop_result)
         outputlog(log_path, start_result)
-        if '已成功完成连接请求。' in result:
+        current_wifiname = get_current_wifi()
+        # if '已成功完成连接请求。' in result:
+        if current_wifiname == wifi_name:
             outputlog(log_path, f"{wifi_name}{result}")
             return True
         elif connects > 3:
