@@ -8,6 +8,3 @@ if exist "%BASE_DIR%python3.11" (
 ) else (
     python main.py
 )
-
-pause
-exit
