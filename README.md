@@ -20,7 +20,7 @@
 
 * 我们为 Windows 用户制作了一个快速启动包，可以在 [Release](https://github.com/Ling5924/CampusNetworkLogin/releases) 中找到。    
 
-* 文件名为：`Windows-quickstart-CampusNetworkLogin-v2.0.0.zip`
+* 文件名为：`Windows-quickstart-CampusNetworkLogin.zip`
 
 * 快速部署包中会含有 python 解释器，所以无需再下载
 
